@@ -1,16 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 import 'LinkingPage.dart';
 import 'School.dart';
-
+//schoolsytemmobile
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+  DeviceOrientation.portraitUp,
+  DeviceOrientation.portraitDown
+]);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
+
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -41,7 +49,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home: WebView(),
+      home: MyApp(),
       debugShowCheckedModeBanner: false,
     );
   }
