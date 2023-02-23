@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home: ConnectionCheckerDemo(),
+      home: WebViewApp(),
       debugShowCheckedModeBanner: false,
     );
   }
