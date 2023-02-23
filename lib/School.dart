@@ -74,6 +74,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
 
 class WebViewApp extends StatefulWidget {
   const WebViewApp({super.key});
@@ -85,21 +87,47 @@ class WebViewApp extends StatefulWidget {
 class _WebViewAppState extends State<WebViewApp> {
   late final WebViewController controller;
 
+  bool loading = true;
+  bool internetIsAvailable = false;
+
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
+    checkConnection();
+  }
+
+  void checkConnection() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if(result == true) {
+      setState(() {
+        loading = false;
+        internetIsAvailable = true;
+      });
+      controller = WebViewController()
       ..loadRequest(
         Uri.parse('https://telesoft.co.tz'),
       );
+    } else {
+      setState(() {
+        loading = false;
+        internetIsAvailable = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: WebViewWidget(
+        child: 
+        !loading && internetIsAvailable ? WebViewWidget(
           controller: controller,
+        ) : Container(
+          child: !loading && !internetIsAvailable ? Container(
+            child: Text('No internet Connection')
+          ) : Container(
+            child: Text('Loading')
+          )
         ),
       ),
     );

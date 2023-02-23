@@ -16,7 +16,8 @@ class _WebViewStackState extends State<WebViewStack> {
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
+    
+    // controller = WebViewController()
       ..setNavigationDelegate(NavigationDelegate(
         onPageStarted: (url) {
           setState(() {
@@ -60,13 +61,14 @@ class _WebViewStackState extends State<WebViewStack> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        WebViewWidget(
-          controller: controller,
-        ),
-        if (loadingPercentage < 100)
-          LinearProgressIndicator(
-            value: loadingPercentage / 100.0,
-          ),
+        Container()
+        // WebViewWidget(
+        //   controller: controller,
+        // ),
+        // if (loadingPercentage < 100)
+        //   LinearProgressIndicator(
+        //     value: loadingPercentage / 100.0,
+        //   ),
       ],
     );
   }
