@@ -37,7 +37,6 @@ dependencies:
   connectivity_plus: ^3.0.3
   internet_connection_checker: ^1.0.0+1
   webview_flutter: ^4.0.5
-#  flutter_inappwebview: ^5.7.2+3
   flutter_webview_plugin: ^0.4.0
 
 
@@ -101,6 +100,7 @@ flutter:
     - assets/background.png
     - assets/Icon.png
     - assets/telelogo.jpeg
+    - assets/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

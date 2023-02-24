@@ -73,6 +73,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:schoolsytemmobile/src/web_view_stack.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -120,13 +121,40 @@ class _WebViewAppState extends State<WebViewApp> {
     return Scaffold(
       body: SafeArea(
         child: 
-        !loading && internetIsAvailable ? WebViewWidget(
-          controller: controller,
-        ) : Container(
+        !loading && internetIsAvailable ?WebViewWidget(controller: controller): Container(
           child: !loading && !internetIsAvailable ? Container(
-            child: Text('No internet Connection')
-          ) : Container(
-            child: Text('Loading')
+            width: double.infinity,
+            height: double.infinity,
+            color: Color(0xff31005F),
+
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.topCenter,
+                  child: Image.asset("assets/logo.png"),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20,right: 20),
+                      child: Container(
+                        width: double.infinity,
+                        height: 100,
+                        child: Center(child: Text("No internet connection",textAlign: TextAlign.center,style: TextStyle(color: Colors.black,),)),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(10))
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(child: Container())
+              ],
+            ),
+
+          ) :LinearProgressIndicator(
+            color: Colors.blue,
           )
         ),
       ),
